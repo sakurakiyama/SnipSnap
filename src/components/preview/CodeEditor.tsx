@@ -2,6 +2,7 @@ import hljs from 'highlight.js/lib/common';
 import { useRef, useState } from 'react';
 import 'highlight.js/styles/atom-one-dark.css';
 import '../../stylesheets/Themes.scss';
+import Header from './Header';
 
 interface CodeEditorProps {
   theme: string;
@@ -23,18 +24,25 @@ function CodeEditor({ theme }: CodeEditorProps): JSX.Element {
     // Background color
     <div className='relative block rounded-md w-[680px] p-4'>
       <pre className={`flex flex-col w-[600px] p-4 rounded-md m-auto ${theme}`}>
-        {/* Display Code */}
-        <code
-          className={`${`language-${language}`} hljs rounded-lg w-[500px] min-h-[300px] !break-words  left-0 right-0 ml-auto mr-auto`}
-          ref={codeBlockRef}
-        ></code>
-        {/* Handle Input */}
-        <code
-          className='hljs !caret-gray-500 w-[500px] !outline-none !bg-transparent min-h-[300px] !text-transparent rounded-lg absolute !break-words left-0 right-0 ml-auto mr-auto '
-          contentEditable={true}
-          onInput={handleCodeChange}
-          ref={inputRef}
-        ></code>
+        <div className=' ml-auto mr-auto '>
+          <Header />
+          {/* Display Code */}
+          <code
+            className={`${`language-${language}`} hljs rounded-br-lg rounded-bl-lg w-[500px] min-h-[300px] !break-words  left-0 right-0 ml-auto mr-auto`}
+            ref={codeBlockRef}
+          ></code>
+        </div>
+        <div className=' min-h-[300px] w-[500px] left-0 right-0 ml-auto mr-auto absolute'>
+          {/* Invisible Spacer */}
+          <div className='rounded-tr-lg rounded-tl-lg h-8 p-2'></div>
+          {/* Handle Input */}
+          <code
+            className='hljs !caret-gray-500 !outline-none !bg-transparent !text-transparent rounded-br-lg rounded-bl-lg !break-words'
+            contentEditable={true}
+            onInput={handleCodeChange}
+            ref={inputRef}
+          ></code>
+        </div>
       </pre>
     </div>
   );
