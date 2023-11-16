@@ -1,8 +1,35 @@
 import hljs from 'highlight.js/lib/common';
-import { useRef, useState } from 'react';
 import 'highlight.js/styles/atom-one-dark.css';
+import 'highlight.js/styles/atom-one-dark.css';
+import 'highlight.js/styles/an-old-hope.css';
+import 'highlight.js/styles/arta.css';
+import 'highlight.js/styles/base16/ashes.css';
+import 'highlight.js/styles/base16/atelier-cave.css';
+import 'highlight.js/styles/base16/atelier-dune.css';
+import 'highlight.js/styles/base16/atelier-estuary.css';
+import 'highlight.js/styles/base16/atelier-forest.css';
+import 'highlight.js/styles/base16/atelier-lakeside.css';
+import 'highlight.js/styles/base16/atelier-plateau.css';
+import 'highlight.js/styles/base16/atelier-savanna.css';
+import 'highlight.js/styles/base16/atelier-seaside.css';
+import 'highlight.js/styles/base16/atlas.css';
+import 'highlight.js/styles/base16/bespin.css';
+import 'highlight.js/styles/base16/chalk.css';
+import 'highlight.js/styles/base16/circus.css';
+import 'highlight.js/styles/base16/classic-dark.css';
+import 'highlight.js/styles/base16/codeschool.css';
+import 'highlight.js/styles/base16/colors.css';
+import 'highlight.js/styles/base16/darcula.css';
+import 'highlight.js/styles/base16/dark-violet.css';
+import 'highlight.js/styles/base16/darkmoss.css';
+import 'highlight.js/styles/base16/darktooth.css';
+import 'highlight.js/styles/base16/decaf.css';
+import 'highlight.js/styles/base16/default-dark.css';
+import 'highlight.js/styles/base16/dracula.css';
+import 'highlight.js/styles/base16/edge-dark.css';
 import '../../stylesheets/Themes.scss';
 import Header from './Header';
+import { useRef, useState } from 'react';
 
 interface CodeEditorProps {
   theme: string;
@@ -19,7 +46,6 @@ function CodeEditor({ theme }: CodeEditorProps): JSX.Element {
     setLanguage(highlightedCode.language!);
     codeBlockRef.current!.innerHTML = highlightedCode.value;
   };
-  console.log(language);
   return (
     // Background color
     <div className='relative block rounded-md w-[680px] p-4'>

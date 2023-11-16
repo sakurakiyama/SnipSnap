@@ -4,10 +4,12 @@ import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import '../../stylesheets/Themes.scss';
 
-interface ThemeSelectorProps {
+interface BackgroundSelectorProps {
   setTheme: React.Dispatch<React.SetStateAction<string>>;
 }
-function ThemeSelector({ setTheme }: ThemeSelectorProps) {
+function BackgroundSelector({
+  setTheme,
+}: BackgroundSelectorProps): JSX.Element {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const themes = [
@@ -25,7 +27,6 @@ function ThemeSelector({ setTheme }: ThemeSelectorProps) {
     'Regal',
   ];
 
-  console.log(themes[1].toLowerCase());
   return (
     <div className='w-full'>
       <div className='flex items-center justify-between w-full'>
@@ -71,4 +72,4 @@ function ThemeSelector({ setTheme }: ThemeSelectorProps) {
   );
 }
 
-export default ThemeSelector;
+export default BackgroundSelector;
