@@ -13,22 +13,23 @@ function CodeEditor(): JSX.Element {
     setLanguage(highlightedCode.language!);
     codeBlockRef.current!.innerHTML = highlightedCode.value;
   };
-
   return (
-    <pre className='flex rounded-md m-auto max-w-[60vw] max-h-[50vh] hljs atom-one-dark'>
-      {/* Display Code */}
-      <code
-        className={`${`language-${language}`}  max-w-[60vw] max-h-[50vh] hljs rounded-lg`}
-        ref={codeBlockRef}
-      ></code>
-      {/* Handle Input */}
-      <code
-        className='max-w-[60vw] max-h-[50vh] hljs !caret-black !bg-transparent !text-transparent rounded-lg absolute '
-        contentEditable={true}
-        onInput={handleCodeChange}
-        ref={inputRef}
-      ></code>
-    </pre>
+    <div className='flex rounded-md bg-red-500 w-[80vw] h-[70vh] m-4 overflow-auto'>
+      <pre className='flex rounded-md m-auto max-w-[70vw] hljs atom-one-dark'>
+        {/* Display Code */}
+        <code
+          className={`${`language-${language}`} hljs rounded-lg min-h-[50vh] max-w-[60vw] min-w-[50vw] !break-words	`}
+          ref={codeBlockRef}
+        ></code>
+        {/* Handle Input */}
+        <code
+          className='hljs !caret-black min-h-[50vh] max-w-[60vw] min-w-[50vw] !outline-none !bg-transparent !text-transparent rounded-lg absolute  !break-words '
+          contentEditable={true}
+          onInput={handleCodeChange}
+          ref={inputRef}
+        ></code>
+      </pre>
+    </div>
   );
 }
 
