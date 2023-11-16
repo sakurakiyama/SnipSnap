@@ -1,12 +1,12 @@
-import BackGroundPicker from './BackgroundPicker';
+import ThemeSelector from './ThemeSelector';
 
 interface SidebarProps {
-  setBackground: React.Dispatch<React.SetStateAction<string>>;
+  setTheme: React.Dispatch<React.SetStateAction<string>>;
 }
-function Sidebar({ setBackground }: SidebarProps) {
+function Sidebar({ setTheme }: SidebarProps) {
   return (
-    <div className='flex w-[30%] h-[80%] bg-green-500 m-4'>
-      <BackGroundPicker />
+    <div className='flex w-[30%] h-[80%] border rounded-md m-4 p-6'>
+      <ThemeSelector setTheme={setTheme} />
     </div>
   );
 }
