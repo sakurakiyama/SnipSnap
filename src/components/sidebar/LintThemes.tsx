@@ -3,7 +3,10 @@ import { CommandLineIcon } from '@heroicons/react/24/outline';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
-function LintThemes() {
+interface LintThemeProps {
+  setLintTheme: React.Dispatch<React.SetStateAction<string>>;
+}
+function LintThemes({ setLintTheme }: LintThemeProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const highlightStyles = [
@@ -62,11 +65,7 @@ function LintThemes() {
           highlightStyles.map((style) => {
             return (
               <ul className='flex items-center'>
-                <text
-                //   onClick={() => setStyle(style)}
-                >
-                  {style}
-                </text>
+                <text onClick={() => setLintTheme(style)}>{style}</text>
               </ul>
             );
           })}

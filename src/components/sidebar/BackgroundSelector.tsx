@@ -5,14 +5,14 @@ import { useState } from 'react';
 import '../../stylesheets/Themes.scss';
 
 interface BackgroundSelectorProps {
-  setTheme: React.Dispatch<React.SetStateAction<string>>;
+  setBackground: React.Dispatch<React.SetStateAction<string>>;
 }
 function BackgroundSelector({
-  setTheme,
+  setBackground,
 }: BackgroundSelectorProps): JSX.Element {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const themes = [
+  const backgrounds = [
     'Fiery',
     'Citrus',
     'Fuchsia',
@@ -50,19 +50,19 @@ function BackgroundSelector({
       </div>
       <div className='pt-2'>
         {isOpen &&
-          themes.map((theme) => {
-            const lowercaseTheme = theme.toLowerCase();
+          backgrounds.map((background) => {
+            const lowercaseBackground = background.toLowerCase();
             return (
               <ul className='flex items-center ml-10 pb-2'>
                 <div
-                  onClick={() => setTheme(lowercaseTheme)}
-                  className={`${lowercaseTheme} cursor-pointer rounded-[50%] h-[25px] w-[25px]`}
+                  onClick={() => setBackground(lowercaseBackground)}
+                  className={`${lowercaseBackground} cursor-pointer rounded-[50%] h-[25px] w-[25px]`}
                 ></div>
                 <text
-                  onClick={() => setTheme(lowercaseTheme)}
+                  onClick={() => setBackground(lowercaseBackground)}
                   className='ml-2 cursor-pointer'
                 >
-                  {theme}
+                  {background}
                 </text>
               </ul>
             );

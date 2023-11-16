@@ -4,11 +4,14 @@ import CodeEditor from './components/preview/CodeEditor';
 import { useState } from 'react';
 
 function App() {
-  const [theme, setTheme] = useState<string>('blush');
+  const [background, setBackground] = useState<string>('blush');
+  const [lintTheme, setLintTheme] = useState<string>('');
+
+  console.log(lintTheme);
   return (
     <div className='flex flex-row h-full'>
-      <Sidebar setTheme={setTheme} />
-      <CodeEditor theme={theme} />
+      <Sidebar setBackground={setBackground} setLintTheme={setLintTheme} />
+      <CodeEditor background={background} lintTheme={lintTheme} />
     </div>
   );
 }
