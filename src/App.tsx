@@ -8,7 +8,7 @@ function App() {
   const [lintTheme, setLintTheme] = useState<string>('');
 
   return (
-    <div className='flex flex-row h-full'>
+    <div className='flex flex-row h-full justify-center align-middle mt-14'>
       <Sidebar setBackground={setBackground} setLintTheme={setLintTheme} />
       <CodeEditor background={background} lintTheme={lintTheme} />
     </div>

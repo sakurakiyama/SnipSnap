@@ -28,7 +28,7 @@ function BackgroundSelector({
   ];
 
   return (
-    <div className='w-full'>
+    <div className='w-full mb-4'>
       <div className='flex items-center justify-between w-full'>
         <section className='flex'>
           <SwatchIcon className='w-[20px] mr-4' />
