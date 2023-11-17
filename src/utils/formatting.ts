@@ -1,16 +1,16 @@
 import { format } from 'prettier/standalone';
 import parserBabel from 'prettier/plugins/babel';
-import parserCSS from 'prettier/parser-postcss';
-import parserMarkdown from 'prettier/parser-markdown';
-import parserGraphQL from 'prettier/parser-graphql';
-import parserTypeScript from 'prettier/parser-typescript';
+import parserCSS from 'prettier/plugins/postcss';
+import parserMarkdown from 'prettier/plugins/markdown';
+import parserGraphQL from 'prettier/plugins/graphql';
+import parserTypeScript from 'prettier/plugins/typescript';
 import estreePlugin from 'prettier/plugins/estree';
 
 export async function formatCode(code: string, language: string) {
   try {
     console.log(language);
     let parser;
-    const plugins = [];
+    const plugins = [estreePlugin];
 
     switch (language) {
       case 'css':
@@ -31,7 +31,7 @@ export async function formatCode(code: string, language: string) {
         break;
       default:
         parser = 'babel';
-        plugins.push(parserBabel, estreePlugin);
+        plugins.push(parserBabel);
     }
 
     return await format(code, {

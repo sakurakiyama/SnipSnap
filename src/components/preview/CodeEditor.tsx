@@ -51,7 +51,6 @@ function CodeEditor({
     const highlightedCode = hljs.highlightAuto(inputValue);
     setLanguage(highlightedCode.language!);
     codeBlockRef.current!.innerHTML = highlightedCode.value;
-    console.log('language detected:', highlightedCode.language);
   };
 
   return (
