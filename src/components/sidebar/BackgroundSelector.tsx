@@ -2,7 +2,7 @@ import { SwatchIcon } from '@heroicons/react/24/outline';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
-import '../../stylesheets/Themes.scss';
+import '../../stylesheets/Background.scss';
 
 interface BackgroundSelectorProps {
   setBackground: React.Dispatch<React.SetStateAction<string>>;

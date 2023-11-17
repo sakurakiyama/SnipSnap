@@ -3,11 +3,16 @@ import { CommandLineIcon } from '@heroicons/react/24/outline';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
-interface LintThemeProps {
+interface LintThemesProps {
   setLintTheme: React.Dispatch<React.SetStateAction<string>>;
 }
-function LintThemes({ setLintTheme }: LintThemeProps) {
+function LintThemes({ setLintTheme }: LintThemesProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const updateLintTheme = (style: string) => {
+    document.documentElement.setAttribute('data-theme', style);
+    setLintTheme(style);
+  };
 
   const highlightStyles = [
     'atom-one-dark',
@@ -64,8 +69,8 @@ function LintThemes({ setLintTheme }: LintThemeProps) {
         {isOpen &&
           highlightStyles.map((style) => {
             return (
-              <ul className='flex items-center'>
-                <text onClick={() => setLintTheme(style)}>{style}</text>
+              <ul className='flex items-center cursor-pointer ml-10'>
+                <text onClick={() => updateLintTheme(style)}>{style}</text>
               </ul>
             );
           })}

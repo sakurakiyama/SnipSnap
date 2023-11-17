@@ -1,0 +1,109 @@
+@use 'sass:meta';
+
+html[data-theme='an-old-hope'] {
+  @include meta.load-css('highlight.js/styles/an-old-hope.css');
+}
+
+html[data-theme='atom-one-dark'] {
+  @include meta.load-css('highlight.js/styles/atom-one-dark.css');
+}
+
+html[data-theme='arta'] {
+  @include meta.load-css('highlight.js/styles/arta.css');
+}
+
+html[data-theme='ashes'] {
+  @include meta.load-css('highlight.js/styles/base16/ashes.css');
+}
+
+html[data-theme='atelier-cave'] {
+  @include meta.load-css('highlight.js/styles/base16/atelier-cave.css');
+}
+
+html[data-theme='atelier-dune'] {
+  @include meta.load-css('highlight.js/styles/base16/atelier-dune.css');
+}
+
+html[data-theme='atelier-estuary'] {
+  @include meta.load-css('highlight.js/styles/base16/atelier-estuary.css');
+}
+
+html[data-theme='atelier-forest'] {
+  @include meta.load-css('highlight.js/styles/base16/atelier-forest.css');
+}
+
+html[data-theme='atelier-lakeside'] {
+  @include meta.load-css('highlight.js/styles/base16/atelier-lakeside.css');
+}
+
+html[data-theme='atelier-plateau'] {
+  @include meta.load-css('highlight.js/styles/base16/atelier-plateau.css');
+}
+
+html[data-theme='atelier-savanna'] {
+  @include meta.load-css('highlight.js/styles/base16/atelier-savanna.css');
+}
+
+html[data-theme='atelier-seaside'] {
+  @include meta.load-css('highlight.js/styles/base16/atelier-seaside.css');
+}
+
+html[data-theme='atlas'] {
+  @include meta.load-css('highlight.js/styles/base16/atlas.css');
+}
+
+html[data-theme='bespin'] {
+  @include meta.load-css('highlight.js/styles/base16/bespin.css');
+}
+
+html[data-theme='chalk'] {
+  @include meta.load-css('highlight.js/styles/base16/chalk.css');
+}
+
+html[data-theme='circus'] {
+  @include meta.load-css('highlight.js/styles/base16/circus.css');
+}
+
+html[data-theme='classic-dark'] {
+  @include meta.load-css('highlight.js/styles/base16/classic-dark.css');
+}
+
+html[data-theme='codeschool'] {
+  @include meta.load-css('highlight.js/styles/base16/codeschool.css');
+}
+
+html[data-theme='colors'] {
+  @include meta.load-css('highlight.js/styles/base16/colors.css');
+}
+
+html[data-theme='darcula'] {
+  @include meta.load-css('highlight.js/styles/base16/darcula.css');
+}
+
+html[data-theme='dark-violet'] {
+  @include meta.load-css('highlight.js/styles/base16/dark-violet.css');
+}
+
+html[data-theme='darkmoss'] {
+  @include meta.load-css('highlight.js/styles/base16/darkmoss.css');
+}
+
+html[data-theme='darktooth'] {
+  @include meta.load-css('highlight.js/styles/base16/darktooth.css');
+}
+
+html[data-theme='decaf'] {
+  @include meta.load-css('highlight.js/styles/base16/decaf.css');
+}
+
+html[data-theme='default-dark'] {
+  @include meta.load-css('highlight.js/styles/base16/default-dark.css');
+}
+
+html[data-theme='dracula'] {
+  @include meta.load-css('highlight.js/styles/base16/dracula.css');
+}
+
+html[data-theme='edge-dark'] {
+  @include meta.load-css('highlight.js/styles/base16/edge-dark.css');
+}

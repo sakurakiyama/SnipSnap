@@ -1,32 +1,6 @@
 import hljs from 'highlight.js/lib/common';
-import 'highlight.js/styles/atom-one-dark.css';
-// import 'highlight.js/styles/an-old-hope.css';
-// import 'highlight.js/styles/arta.css';
-// import 'highlight.js/styles/base16/ashes.css';
-// import 'highlight.js/styles/base16/atelier-cave.css';
-// import 'highlight.js/styles/base16/atelier-dune.css';
-// import 'highlight.js/styles/base16/atelier-estuary.css';
-// import 'highlight.js/styles/base16/atelier-forest.css';
-// import 'highlight.js/styles/base16/atelier-lakeside.css';
-// import 'highlight.js/styles/base16/atelier-plateau.css';
-// import 'highlight.js/styles/base16/atelier-savanna.css';
-// import 'highlight.js/styles/base16/atelier-seaside.css';
-// import 'highlight.js/styles/base16/atlas.css';
-// import 'highlight.js/styles/base16/bespin.css';
-// import 'highlight.js/styles/base16/chalk.css';
-// import 'highlight.js/styles/base16/circus.css';
-// import 'highlight.js/styles/base16/classic-dark.css';
-// import 'highlight.js/styles/base16/codeschool.css';
-// import 'highlight.js/styles/base16/colors.css';
-// import 'highlight.js/styles/base16/darcula.css';
-// import 'highlight.js/styles/base16/dark-violet.css';
-// import 'highlight.js/styles/base16/darkmoss.css';
-// import 'highlight.js/styles/base16/darktooth.css';
-// import 'highlight.js/styles/base16/decaf.css';
-// import 'highlight.js/styles/base16/default-dark.css';
-// import 'highlight.js/styles/base16/dracula.css';
-// import 'highlight.js/styles/base16/edge-dark.css';
-import '../../stylesheets/Themes.scss';
+import '../../stylesheets/LintThemes.scss';
+import '../../stylesheets/Background.scss';
 import Header from './Header';
 import { useRef, useState } from 'react';
 
@@ -52,7 +26,7 @@ function CodeEditor({ background, lintTheme }: CodeEditorProps): JSX.Element {
         className={`flex flex-col w-[600px] p-4 rounded-md m-auto ${background}`}
       >
         <pre className=' ml-auto mr-auto'>
-          <Header />
+          <Header lintTheme={lintTheme} />
           {/* Display Code */}
           <code
             className={`${`language-${language}`} hljs rounded-br-lg rounded-bl-lg w-[500px] min-h-[300px] !break-words left-0 right-0 ml-auto mr-auto`}

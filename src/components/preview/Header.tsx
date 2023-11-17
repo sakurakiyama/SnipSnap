@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-function Header(): JSX.Element {
+interface HeaderProps {
+  lintTheme: string;
+}
+function Header({ lintTheme }: HeaderProps): JSX.Element {
   const [fileName, setFileName] = useState<string | undefined>(undefined);
   const [placeholder, setPlaceholder] = useState<string>('Untitled');
+  const [lintBackground, setLintBackground] = useState<string>('');
 
   const handleFocus = () => {
     if (fileName === undefined) setPlaceholder('');
@@ -11,8 +15,21 @@ function Header(): JSX.Element {
   const handleBlur = () => {
     if (fileName === undefined) setPlaceholder('Untitled');
   };
+
+  useEffect(() => {
+    const codeEditor = document.querySelector('.hljs');
+    if (!codeEditor) return;
+
+    const computedStyle = window.getComputedStyle(codeEditor);
+    const backgroundColor = computedStyle.backgroundColor;
+    setLintBackground(backgroundColor);
+  }, [lintTheme]);
+
   return (
-    <div className='rounded-tr-lg rounded-tl-lg h-8 p-2 bg-[#282c34]'>
+    <div
+      style={{ backgroundColor: lintBackground }}
+      className='rounded-tr-lg rounded-tl-lg h-8 p-2'
+    >
       <div className='flex'>
         {/* Buttons */}
         <div className='flex flex-row w-full'>
@@ -24,7 +41,8 @@ function Header(): JSX.Element {
         <div className=''>
           <input
             type='text'
-            className='rounded-md bg-[#282c34] text-center relative z-10 focus:outline-none text-[#abb2bf]'
+            style={{ backgroundColor: lintBackground }}
+            className='rounded-md text-center relative z-10 focus:outline-none text-[#abb2bf]'
             placeholder={fileName === undefined ? placeholder : ''}
             value={fileName}
             onChange={(e) => setFileName(e.target.value)}

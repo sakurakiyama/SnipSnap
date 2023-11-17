@@ -7,7 +7,6 @@ function App() {
   const [background, setBackground] = useState<string>('blush');
   const [lintTheme, setLintTheme] = useState<string>('');
 
-  console.log(lintTheme);
   return (
     <div className='flex flex-row h-full'>
       <Sidebar setBackground={setBackground} setLintTheme={setLintTheme} />
