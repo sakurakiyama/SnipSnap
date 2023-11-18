@@ -38,7 +38,7 @@ function CodeEditor({
       } catch (error) {
         console.log(error);
         toast.error(
-          'Formatting: Unable to format code. Check the console logs for details.',
+          'Formatting: Unable to format code. Check the console logs for details.'
         );
       }
       setShouldFormat(false);
@@ -55,11 +55,11 @@ function CodeEditor({
 
   return (
     // Background color
-    <div className="relative block rounded-md w-[680px] p-4">
+    <div className='relative block rounded-md w-[680px] p-4'>
       <div
         className={`flex flex-col w-[600px] p-4 rounded-md m-auto ${background}`}
       >
-        <pre className=" ml-auto mr-auto">
+        <pre className=' ml-auto mr-auto'>
           <Header lintTheme={lintTheme} />
           {/* Display Code */}
           <code
@@ -67,9 +67,9 @@ function CodeEditor({
             ref={codeBlockRef}
           ></code>
         </pre>
-        <pre className=" min-h-[300px] w-[500px] left-0 right-0 ml-auto mr-auto absolute">
+        <pre className=' min-h-[300px] w-[500px] left-0 right-0 ml-auto mr-auto absolute'>
           {/* Invisible Spacer */}
-          <div className="rounded-tr-lg rounded-tl-lg h-8 p-2"></div>
+          <div className='rounded-tr-lg rounded-tl-lg h-8 p-2'></div>
           {/* Handle Input */}
           <code
             ref={inputBlockRef}

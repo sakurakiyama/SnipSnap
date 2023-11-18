@@ -45,31 +45,31 @@ function LintThemes({ setLintTheme }: LintThemesProps) {
   ];
 
   return (
-    <div className="w-full mb-4">
-      <div className="flex items-center justify-between w-full">
-        <section className="flex">
-          <CommandLineIcon className="w-[20px] mr-4" />
+    <div className='w-full mb-4'>
+      <div className='flex items-center justify-between w-full'>
+        <section className='flex'>
+          <CommandLineIcon className='w-[20px] mr-4' />
           <text>Lint Themes</text>
         </section>
-        <section className="flex">
+        <section className='flex'>
           {isOpen ? (
             <ChevronDownIcon
               onClick={() => setIsOpen(false)}
-              className="w-[20px]"
+              className='w-[20px]'
             />
           ) : (
             <ChevronRightIcon
-              className="w-[20px]"
+              className='w-[20px]'
               onClick={() => setIsOpen(true)}
             />
           )}
         </section>
       </div>
-      <div className="pt-2">
+      <div className='pt-2'>
         {isOpen &&
-          highlightStyles.map(style => {
+          highlightStyles.map((style) => {
             return (
-              <ul className="flex items-center cursor-pointer ml-10">
+              <ul className='flex items-center cursor-pointer ml-8 border m-2 p-2 rounded-md hover:bg-gray-200'>
                 <text onClick={() => updateLintTheme(style)}>{style}</text>
               </ul>
             );
