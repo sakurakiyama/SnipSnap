@@ -10,7 +10,7 @@ function Format({ setShouldFormat }: FormatProps) {
     <div className='w-full flex items-center justify-center'>
       <button
         onClick={handleFormatting}
-        className='border p-1 px-2 rounded-md hover:bg-gray-200'
+        className='border border-[var(--border-color)] p-1 px-2 rounded-md hover:bg-[var(--hover-color)] text-[var(--text-color)]'
       >
         Format
       </button>

@@ -45,7 +45,7 @@ function LintThemes({ setLintTheme }: LintThemesProps) {
   ];
 
   return (
-    <div className='w-full mb-4'>
+    <div className='w-full mb-4 text-[var(--text-color)]'>
       <div className='flex items-center justify-between w-full'>
         <section className='flex'>
           <CommandLineIcon className='w-[20px] mr-4' />
@@ -65,13 +65,16 @@ function LintThemes({ setLintTheme }: LintThemesProps) {
           )}
         </section>
       </div>
-      <div className='pt-2'>
+      <div
+        className={`pt-2 overflow-hidden transition-all duration-1000 
+        ${isOpen ? 'max-h-[300px] overflow-scroll	' : 'max-h-0'}`}
+      >
         {isOpen &&
           highlightStyles.map((style) => {
             return (
               <ul
                 onClick={() => updateLintTheme(style)}
-                className='flex items-center cursor-pointer ml-8 border m-2 p-2 rounded-md hover:bg-gray-200'
+                className='flex items-center cursor-pointer ml-8 border border-[var(--border-color)] m-2 p-2 rounded-md hover:bg-[var(--hover-color)] '
               >
                 <text>{style}</text>
               </ul>

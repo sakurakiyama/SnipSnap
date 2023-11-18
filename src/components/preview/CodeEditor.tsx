@@ -63,7 +63,7 @@ function CodeEditor({
           <Header lintTheme={lintTheme} />
           {/* Display Code */}
           <code
-            className={`${`language-${language}`} hljs rounded-br-lg rounded-bl-lg w-[500px] min-h-[300px] !break-words left-0 right-0 ml-auto mr-auto`}
+            className={`${`language-${language}`} hljs rounded-br-lg rounded-bl-lg w-[500px] min-h-[300px] !break-words left-0 right-0 ml-auto mr-auto shadow-lg`}
             ref={codeBlockRef}
           ></code>
         </pre>
@@ -73,7 +73,7 @@ function CodeEditor({
           {/* Handle Input */}
           <code
             ref={inputBlockRef}
-            className={`${`language-${language}`} hljs !caret-gray-500 min-h-[300px] !outline-none !bg-transparent !text-transparent rounded-br-lg rounded-bl-lg !break-words `}
+            className={`${`language-${language}`} hljs !caret-gray-500 min-h-[300px] !outline-none !bg-transparent !text-transparent rounded-br-lg rounded-bl-lg shadow-lg !break-words `}
             contentEditable={true}
             onInput={handleCodeChange}
           ></code>

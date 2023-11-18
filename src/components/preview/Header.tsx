@@ -38,11 +38,11 @@ function Header({ lintTheme }: HeaderProps): JSX.Element {
           <div className='rounded-[50%] h-[15px] w-[15px] bg-[#28c63e]'></div>
         </div>
         {/* Editable field */}
-        <div className=''>
+        <div>
           <input
             type='text'
             style={{ backgroundColor: lintBackground }}
-            className='rounded-md text-center relative z-10 focus:outline-none text-[#abb2bf]'
+            className='rounded-md text-center relative z-10 focus:outline-none text-[var(--text-color)]'
             placeholder={fileName === undefined ? placeholder : ''}
             value={fileName}
             onChange={(e) => setFileName(e.target.value)}

@@ -2,4 +2,11 @@
 
 :root {
   font-family: 'Roboto Mono', monospace;
+  --text-color: #949494;
+  --border-color: #2e2d2d;
+  --hover-color: #494949;
+}
+
+body {
+  background-color: #141414;
 }

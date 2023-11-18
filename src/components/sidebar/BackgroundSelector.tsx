@@ -28,7 +28,7 @@ function BackgroundSelector({
   ];
 
   return (
-    <div className='w-full mb-4'>
+    <div className='w-full mb-4 text-[var(--text-color)]'>
       <div className='flex items-center justify-between w-full'>
         <section className='flex'>
           <SwatchIcon className='w-[20px] mr-4' />
@@ -48,14 +48,17 @@ function BackgroundSelector({
           )}
         </section>
       </div>
-      <div className='pt-2'>
+      <div
+        className={`pt-2 overflow-hidden transition-all duration-1000 
+        ${isOpen ? 'max-h-[300px] overflow-scroll	' : 'max-h-0'}`}
+      >
         {isOpen &&
           backgrounds.map((background) => {
             const lowercaseBackground = background.toLowerCase();
             return (
               <ul
                 onClick={() => setBackground(lowercaseBackground)}
-                className='flex items-center ml-8 border m-2 p-2 rounded-md hover:bg-gray-200 cursor-pointer'
+                className='flex items-center ml-8 border border-[var(--border-color)] m-2 p-2 rounded-md hover:bg-[var(--hover-color)] cursor-pointer'
               >
                 <div
                   className={`${lowercaseBackground} cursor-pointer rounded-[50%] h-[25px] w-[25px]`}
