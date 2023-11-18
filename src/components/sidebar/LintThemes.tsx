@@ -69,8 +69,11 @@ function LintThemes({ setLintTheme }: LintThemesProps) {
         {isOpen &&
           highlightStyles.map((style) => {
             return (
-              <ul className='flex items-center cursor-pointer ml-8 border m-2 p-2 rounded-md hover:bg-gray-200'>
-                <text onClick={() => updateLintTheme(style)}>{style}</text>
+              <ul
+                onClick={() => updateLintTheme(style)}
+                className='flex items-center cursor-pointer ml-8 border m-2 p-2 rounded-md hover:bg-gray-200'
+              >
+                <text>{style}</text>
               </ul>
             );
           })}

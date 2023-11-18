@@ -53,17 +53,14 @@ function BackgroundSelector({
           backgrounds.map((background) => {
             const lowercaseBackground = background.toLowerCase();
             return (
-              <ul className='flex items-center ml-8 border m-2 p-2 rounded-md hover:bg-gray-200'>
+              <ul
+                onClick={() => setBackground(lowercaseBackground)}
+                className='flex items-center ml-8 border m-2 p-2 rounded-md hover:bg-gray-200 cursor-pointer'
+              >
                 <div
-                  onClick={() => setBackground(lowercaseBackground)}
                   className={`${lowercaseBackground} cursor-pointer rounded-[50%] h-[25px] w-[25px]`}
                 ></div>
-                <text
-                  onClick={() => setBackground(lowercaseBackground)}
-                  className='ml-2 cursor-pointer'
-                >
-                  {background}
-                </text>
+                <text className='ml-2 cursor-pointer'>{background}</text>
               </ul>
             );
           })}
