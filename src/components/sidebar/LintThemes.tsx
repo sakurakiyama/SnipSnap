@@ -49,7 +49,7 @@ function LintThemes({ setLintTheme }: LintThemesProps) {
       <div className='flex items-center justify-between w-full'>
         <section className='flex'>
           <CommandLineIcon className='w-[20px] mr-4' />
-          <text>Lint Themes</text>
+          <span>Lint Themes</span>
         </section>
         <section className='flex'>
           {isOpen ? (
@@ -73,10 +73,11 @@ function LintThemes({ setLintTheme }: LintThemesProps) {
           highlightStyles.map((style) => {
             return (
               <ul
+                key={style}
                 onClick={() => updateLintTheme(style)}
                 className='flex items-center cursor-pointer ml-8 border border-[var(--border-color)] m-2 p-2 rounded-md hover:bg-[var(--hover-color)] '
               >
-                <text>{style}</text>
+                <span>{style}</span>
               </ul>
             );
           })}

@@ -48,6 +48,7 @@ export async function formatCode(code: string, language: string) {
 }
 
 /*
+Below is a list of languages that hljs can detect and which one's the app currently supports 
 xml
 bash
 c
@@ -57,7 +58,7 @@ csharp
 diff
 ruby
 go
-[x] graphql
+[X] graphql
 ini
 java
 [x] javascript
@@ -68,7 +69,7 @@ lua
 makefile
 perl
 objectivec
-[x] php
+[X] php
 php-template
 plaintext
 python
@@ -80,7 +81,7 @@ shell
 sql
 swift
 yaml
-[x] typescript
+[X] typescript
 vbnet
 wasm
 */

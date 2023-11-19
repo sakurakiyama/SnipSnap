@@ -5,15 +5,18 @@ import { useState } from 'react';
 
 interface FormatProps {
   setShouldFormat: React.Dispatch<React.SetStateAction<boolean>>;
-  setLanguage: React.Dispatch<React.SetStateAction<string>>;
   language: string;
+  userSelected: undefined | string[];
+  setUserSelected: React.Dispatch<React.SetStateAction<string[] | undefined>>;
 }
 
-function Format({ setShouldFormat, setLanguage, language }: FormatProps) {
+function Format({
+  setShouldFormat,
+  language,
+  userSelected,
+  setUserSelected,
+}: FormatProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [userSelected, setUserSelected] = useState<undefined | string>(
-    undefined
-  );
 
   const programmingLanguages = [
     { readableLanguage: 'XML', hljsLanguage: 'xml', disabled: true },
@@ -85,14 +88,18 @@ function Format({ setShouldFormat, setLanguage, language }: FormatProps) {
   }
 
   const handleFormatting = async (hljsLanguage: string) => {
-    if (hljsLanguage) {
-      setLanguage(hljsLanguage);
-    }
-    setUserSelected(findReadable(hljsLanguage));
+    setUserSelected([hljsLanguage, findReadable(hljsLanguage)]);
     setShouldFormat(true);
   };
 
-  console.log(userSelected);
+  const getLanguageDisplay = () => {
+    if (userSelected) {
+      if (userSelected[0] === language) {
+        return userSelected[1] + ' (Autodetected)';
+      }
+      return userSelected[1];
+    }
+  };
   return (
     <div className='w-full mb-4 text-[var(--text-color)]'>
       <div className='flex items-center justify-between w-full'>
@@ -103,7 +110,7 @@ function Format({ setShouldFormat, setLanguage, language }: FormatProps) {
             className='border border-[var(--border-color)] p-1 px-2 rounded-md hover:bg-[var(--hover-color)] text-[var(--text-color)]'
           >
             {userSelected
-              ? userSelected
+              ? getLanguageDisplay()
               : `${findReadable(language)} (Autodetected)`}
           </button>
         </section>
@@ -126,17 +133,25 @@ function Format({ setShouldFormat, setLanguage, language }: FormatProps) {
         ${isOpen ? 'max-h-[300px] overflow-scroll	' : 'max-h-0'}`}
       >
         {isOpen &&
-          programmingLanguages.map((language) => {
+          programmingLanguages.map((currentLanguage) => {
             return (
               <ul
+                key={`${currentLanguage.hljsLanguage}+${currentLanguage.disabled}`}
                 onClick={() =>
-                  !language.disabled && handleFormatting(language.hljsLanguage)
+                  !currentLanguage.disabled &&
+                  handleFormatting(currentLanguage.hljsLanguage)
                 }
                 className={`flex items-center cursor-pointer ml-8 border border-[var(--border-color)] m-2 p-2 rounded-md hover:bg-[var(--hover-color)] ${
-                  language.disabled ? 'opacity-50 pointer-events-none' : ''
+                  currentLanguage.disabled
+                    ? 'opacity-50 pointer-events-none'
+                    : ''
                 }`}
               >
-                <text>{language.readableLanguage}</text>
+                <span>
+                  {currentLanguage.hljsLanguage === language
+                    ? `${currentLanguage.readableLanguage} (Autodetected)`
+                    : currentLanguage.readableLanguage}
+                </span>
               </ul>
             );
           })}

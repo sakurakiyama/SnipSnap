@@ -9,6 +9,9 @@ function App() {
   const [lintTheme, setLintTheme] = useState<string>('');
   const [shouldFormat, setShouldFormat] = useState<boolean>(false);
   const [language, setLanguage] = useState<string>('');
+  const [userSelected, setUserSelected] = useState<undefined | string[]>(
+    undefined
+  );
 
   return (
     <div className='flex flex-row h-full justify-center align-middle mt-14'>
@@ -16,8 +19,9 @@ function App() {
         setBackground={setBackground}
         setLintTheme={setLintTheme}
         setShouldFormat={setShouldFormat}
-        setLanguage={setLanguage}
         language={language}
+        userSelected={userSelected}
+        setUserSelected={setUserSelected}
       />
       <CodeEditor
         background={background}
@@ -26,6 +30,7 @@ function App() {
         shouldFormat={shouldFormat}
         setLanguage={setLanguage}
         language={language}
+        userSelected={userSelected}
       />
       <ToastContainer
         position='top-right'

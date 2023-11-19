@@ -14,6 +14,7 @@ interface CodeEditorProps {
   setShouldFormat: React.Dispatch<React.SetStateAction<boolean>>;
   setLanguage: React.Dispatch<React.SetStateAction<string>>;
   language: string;
+  userSelected: undefined | string[];
 }
 
 function CodeEditor({
@@ -23,6 +24,7 @@ function CodeEditor({
   setShouldFormat,
   setLanguage,
   language,
+  userSelected,
 }: CodeEditorProps): JSX.Element {
   const codeBlockRef = useRef<HTMLDivElement | null>(null);
   const inputBlockRef = useRef<HTMLDivElement | null>(null);
@@ -30,8 +32,9 @@ function CodeEditor({
   useEffect(() => {
     const invokeFormat = async () => {
       try {
+        const formatLang = userSelected ? userSelected[0] : language;
         const code = codeBlockRef.current!.innerText;
-        const formattedCode = await formatCode(code, language);
+        const formattedCode = await formatCode(code, formatLang);
         if (formattedCode) {
           const highlightedCode = hljs.highlightAuto(formattedCode);
           codeBlockRef.current!.innerHTML = highlightedCode.value;

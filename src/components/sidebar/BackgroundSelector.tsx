@@ -32,7 +32,7 @@ function BackgroundSelector({
       <div className='flex items-center justify-between w-full'>
         <section className='flex'>
           <SwatchIcon className='w-[20px] mr-4' />
-          <text>Background</text>
+          <span>Background</span>
         </section>
         <section className='flex'>
           {isOpen ? (
@@ -57,13 +57,14 @@ function BackgroundSelector({
             const lowercaseBackground = background.toLowerCase();
             return (
               <ul
+                key={background}
                 onClick={() => setBackground(lowercaseBackground)}
                 className='flex items-center ml-8 border border-[var(--border-color)] m-2 p-2 rounded-md hover:bg-[var(--hover-color)] cursor-pointer'
               >
                 <div
                   className={`${lowercaseBackground} cursor-pointer rounded-[50%] h-[25px] w-[25px]`}
                 ></div>
-                <text className='ml-2 cursor-pointer'>{background}</text>
+                <span className='ml-2 cursor-pointer'>{background}</span>
               </ul>
             );
           })}
