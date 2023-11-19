@@ -8,22 +8,27 @@ function App() {
   const [background, setBackground] = useState<string>('blush');
   const [lintTheme, setLintTheme] = useState<string>('');
   const [shouldFormat, setShouldFormat] = useState<boolean>(false);
+  const [language, setLanguage] = useState<string>('');
 
   return (
-    <div className="flex flex-row h-full justify-center align-middle mt-14">
+    <div className='flex flex-row h-full justify-center align-middle mt-14'>
       <Sidebar
         setBackground={setBackground}
         setLintTheme={setLintTheme}
         setShouldFormat={setShouldFormat}
+        setLanguage={setLanguage}
+        language={language}
       />
       <CodeEditor
         background={background}
         lintTheme={lintTheme}
         setShouldFormat={setShouldFormat}
         shouldFormat={shouldFormat}
+        setLanguage={setLanguage}
+        language={language}
       />
       <ToastContainer
-        position="top-right"
+        position='top-right'
         transition={Zoom}
         autoClose={2000}
         hideProgressBar={false}
@@ -33,7 +38,7 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="colored"
+        theme='colored'
       />
     </div>
   );

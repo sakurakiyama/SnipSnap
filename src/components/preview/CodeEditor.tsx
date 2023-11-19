@@ -2,7 +2,7 @@ import hljs from 'highlight.js/lib/common';
 import '../../stylesheets/LintThemes.scss';
 import '../../stylesheets/Background.scss';
 import Header from './Header';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { formatCode } from '../../utils/formatting';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,6 +12,8 @@ interface CodeEditorProps {
   lintTheme: string;
   shouldFormat: boolean;
   setShouldFormat: React.Dispatch<React.SetStateAction<boolean>>;
+  setLanguage: React.Dispatch<React.SetStateAction<string>>;
+  language: string;
 }
 
 function CodeEditor({
@@ -19,10 +21,11 @@ function CodeEditor({
   lintTheme,
   shouldFormat,
   setShouldFormat,
+  setLanguage,
+  language,
 }: CodeEditorProps): JSX.Element {
   const codeBlockRef = useRef<HTMLDivElement | null>(null);
   const inputBlockRef = useRef<HTMLDivElement | null>(null);
-  const [language, setLanguage] = useState<string>('javascript');
 
   useEffect(() => {
     const invokeFormat = async () => {
