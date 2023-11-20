@@ -21,3 +21,14 @@
 - 🎨 A growing collection of syntax color themes (including some light themes)
 - 🔗 The ability to share your snippets effortlessly with a unique link.
 - 📐 Customize the padding and width for the perfect fit.
+
+## Made with
+
+- React
+- Vite
+- TypeScript
+- Highlight.js
+- Prettier
+- TailwindCSS
+- SCSS/CSS
+- HTML
