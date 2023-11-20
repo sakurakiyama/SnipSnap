@@ -3,8 +3,11 @@ import Sidebar from './components/sidebar/Sidebar';
 import CodeEditor from './components/preview/CodeEditor';
 import { useState } from 'react';
 import { ToastContainer, Zoom } from 'react-toastify';
+import { useRef } from 'react';
 
 function App() {
+  const snippetRef = useRef(null);
+
   const [background, setBackground] = useState<string>('blush');
   const [lintTheme, setLintTheme] = useState<string>('');
   const [shouldFormat, setShouldFormat] = useState<boolean>(false);
@@ -12,6 +15,7 @@ function App() {
   const [userSelected, setUserSelected] = useState<undefined | string[]>(
     undefined
   );
+  const [fileName, setFileName] = useState<string | undefined>(undefined);
 
   return (
     <div className='flex flex-row h-full justify-center align-middle mt-14'>
@@ -22,8 +26,11 @@ function App() {
         detectedLanguage={detectedLanguage}
         userSelected={userSelected}
         setUserSelected={setUserSelected}
+        snippetRef={snippetRef}
+        fileName={fileName}
       />
       <CodeEditor
+        snippetRef={snippetRef}
         background={background}
         lintTheme={lintTheme}
         setShouldFormat={setShouldFormat}
@@ -31,6 +38,8 @@ function App() {
         setDetectedLanguage={setDetectedLanguage}
         detectedLanguage={detectedLanguage}
         userSelected={userSelected}
+        setFileName={setFileName}
+        fileName={fileName}
       />
       <ToastContainer
         position='top-right'

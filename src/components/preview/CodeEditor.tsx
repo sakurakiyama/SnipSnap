@@ -15,6 +15,9 @@ interface CodeEditorProps {
   setDetectedLanguage: React.Dispatch<React.SetStateAction<string>>;
   detectedLanguage: string;
   userSelected: undefined | string[];
+  snippetRef: React.MutableRefObject<null>;
+  setFileName: React.Dispatch<React.SetStateAction<string | undefined>>;
+  fileName: string | undefined;
 }
 
 function CodeEditor({
@@ -25,6 +28,9 @@ function CodeEditor({
   setDetectedLanguage,
   detectedLanguage,
   userSelected,
+  snippetRef,
+  setFileName,
+  fileName,
 }: CodeEditorProps): JSX.Element {
   const codeBlockRef = useRef<HTMLDivElement | null>(null);
   const inputBlockRef = useRef<HTMLDivElement | null>(null);
@@ -61,12 +67,16 @@ function CodeEditor({
 
   return (
     // Background color
-    <div className='relative block rounded-md w-[680px] p-4'>
+    <div ref={snippetRef} className='relative block rounded-md w-[680px] p-4'>
       <div
         className={`flex flex-col w-[600px] p-4 rounded-md m-auto ${background}`}
       >
         <pre className=' ml-auto mr-auto'>
-          <Header lintTheme={lintTheme} />
+          <Header
+            lintTheme={lintTheme}
+            setFileName={setFileName}
+            fileName={fileName}
+          />
           {/* Display Code */}
           <code
             className={`${`language-${detectedLanguage}`} hljs rounded-br-lg rounded-bl-lg w-[500px] min-h-[300px] !break-words left-0 right-0 ml-auto mr-auto shadow-lg`}

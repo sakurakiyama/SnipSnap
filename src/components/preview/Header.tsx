@@ -2,9 +2,14 @@ import { useState, useEffect } from 'react';
 
 interface HeaderProps {
   lintTheme: string;
+  setFileName: React.Dispatch<React.SetStateAction<string | undefined>>;
+  fileName: string | undefined;
 }
-function Header({ lintTheme }: HeaderProps): JSX.Element {
-  const [fileName, setFileName] = useState<string | undefined>(undefined);
+function Header({
+  lintTheme,
+  setFileName,
+  fileName,
+}: HeaderProps): JSX.Element {
   const [placeholder, setPlaceholder] = useState<string>('Untitled');
   const [lintBackground, setLintBackground] = useState<string>('');
 
