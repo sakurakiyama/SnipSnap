@@ -4,13 +4,20 @@
 
 ## Core Features
 
-✨ **Input code, auto-detect language, and format.**
+✨ **Syntax Highlighter:** Input code, auto-detect language, and format.
 
-✨ **Customize your snippet with cool background gradients and syntax colors.**
+✨ **Formatting:** Customize your snippet with cool background gradients and syntax colors.
 
-✨ **Export your snippet as a PNG or JPG.**
+✨ **Export:** Export your snippet as a PNG or JPG.
 
 ## How does it work
 
-- **Syntax Highlighter:** Uses Highlight.js to detect the code snippets language.
-- **Formatting:** Utilizes Prettier to format the code snippet. Various parsers for specific languages are imported from different Prettier plugin modules. Currently supports CSS, Markdown, GraphQL, TypeScript, PHP, and JavaScript.
+- Uses Highlight.js to detect the code snippets language.
+- Utilizes Prettier to format the code snippet. Various parsers for specific languages are imported from different Prettier plugin modules. Currently supports CSS, Markdown, GraphQL, TypeScript, PHP, and JavaScript.
+
+## Coming soon
+
+- 🌐 Expanding language support for code formatting of more languages.
+- 🎨 A growing collection of syntax color themes (including some light themes)
+- 🔗 The ability to share your snippets effortlessly with a unique link.
+- 📐 Customize the padding and width for the perfect fit.
