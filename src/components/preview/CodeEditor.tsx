@@ -50,7 +50,7 @@ function CodeEditor({
       } catch (error) {
         console.log(error);
         toast.error(
-          'Formatting: Unable to format code. Check the console logs for details.'
+          'Unable to format code. Check the console logs for details.'
         );
       }
       setShouldFormat(false);
@@ -69,7 +69,7 @@ function CodeEditor({
     // Background color
     <div ref={snippetRef} className='relative block rounded-md w-[680px] p-4'>
       <div
-        className={`flex flex-col w-[600px] p-4 rounded-md m-auto ${background}`}
+        className={`flex flex-col w-[600px] p-10 rounded-md m-auto ${background}`}
       >
         <pre className=' ml-auto mr-auto'>
           <Header

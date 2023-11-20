@@ -47,7 +47,7 @@ function Header({
           <input
             type='text'
             style={{ backgroundColor: lintBackground }}
-            className='rounded-md text-center relative z-10 focus:outline-none text-[var(--text-color)]'
+            className='leading-8 rounded-md text-center relative z-10 focus:outline-none text-[var(--text-color)] '
             placeholder={fileName === undefined ? placeholder : ''}
             value={fileName}
             onChange={(e) => setFileName(e.target.value)}
