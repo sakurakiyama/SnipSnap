@@ -12,8 +12,8 @@ interface CodeEditorProps {
   lintTheme: string;
   shouldFormat: boolean;
   setShouldFormat: React.Dispatch<React.SetStateAction<boolean>>;
-  setLanguage: React.Dispatch<React.SetStateAction<string>>;
-  language: string;
+  setDetectedLanguage: React.Dispatch<React.SetStateAction<string>>;
+  detectedLanguage: string;
   userSelected: undefined | string[];
 }
 
@@ -22,8 +22,8 @@ function CodeEditor({
   lintTheme,
   shouldFormat,
   setShouldFormat,
-  setLanguage,
-  language,
+  setDetectedLanguage,
+  detectedLanguage,
   userSelected,
 }: CodeEditorProps): JSX.Element {
   const codeBlockRef = useRef<HTMLDivElement | null>(null);
@@ -32,7 +32,7 @@ function CodeEditor({
   useEffect(() => {
     const invokeFormat = async () => {
       try {
-        const formatLang = userSelected ? userSelected[0] : language;
+        const formatLang = userSelected ? userSelected[0] : detectedLanguage;
         const code = codeBlockRef.current!.innerText;
         const formattedCode = await formatCode(code, formatLang);
         if (formattedCode) {
@@ -55,7 +55,7 @@ function CodeEditor({
   const handleCodeChange = async (event: React.SyntheticEvent<HTMLElement>) => {
     const inputValue = event.currentTarget.innerText;
     const highlightedCode = hljs.highlightAuto(inputValue);
-    setLanguage(highlightedCode.language!);
+    setDetectedLanguage(highlightedCode.language!);
     codeBlockRef.current!.innerHTML = highlightedCode.value;
   };
 
@@ -69,7 +69,7 @@ function CodeEditor({
           <Header lintTheme={lintTheme} />
           {/* Display Code */}
           <code
-            className={`${`language-${language}`} hljs rounded-br-lg rounded-bl-lg w-[500px] min-h-[300px] !break-words left-0 right-0 ml-auto mr-auto shadow-lg`}
+            className={`${`language-${detectedLanguage}`} hljs rounded-br-lg rounded-bl-lg w-[500px] min-h-[300px] !break-words left-0 right-0 ml-auto mr-auto shadow-lg`}
             ref={codeBlockRef}
           ></code>
         </pre>
@@ -79,7 +79,7 @@ function CodeEditor({
           {/* Handle Input */}
           <code
             ref={inputBlockRef}
-            className={`${`language-${language}`} hljs !caret-gray-500 min-h-[300px] !outline-none !bg-transparent !text-transparent rounded-br-lg rounded-bl-lg shadow-lg !break-words `}
+            className={`${`language-${detectedLanguage}`} hljs !caret-gray-500 min-h-[300px] !outline-none !bg-transparent !text-transparent rounded-br-lg rounded-bl-lg shadow-lg !break-words `}
             contentEditable={true}
             onInput={handleCodeChange}
           ></code>

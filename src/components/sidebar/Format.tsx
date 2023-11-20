@@ -5,14 +5,14 @@ import { useState } from 'react';
 
 interface FormatProps {
   setShouldFormat: React.Dispatch<React.SetStateAction<boolean>>;
-  language: string;
+  detectedLanguage: string;
   userSelected: undefined | string[];
   setUserSelected: React.Dispatch<React.SetStateAction<string[] | undefined>>;
 }
 
 function Format({
   setShouldFormat,
-  language,
+  detectedLanguage,
   userSelected,
   setUserSelected,
 }: FormatProps) {
@@ -80,38 +80,40 @@ function Format({
     { readableLanguage: 'WebAssembly', hljsLanguage: 'wasm', disabled: true },
   ];
 
-  function findReadable(hljsLanguage: string) {
+  const getReadable = (language: string) => {
     const object = programmingLanguages.find(
-      (arr) => arr.hljsLanguage === hljsLanguage
+      (arr) => arr.hljsLanguage === language
     );
-    return object?.readableLanguage ? object?.readableLanguage : 'JavaScript';
-  }
+    return object?.readableLanguage ? object?.readableLanguage : '';
+  };
 
-  const handleFormatting = async (hljsLanguage: string) => {
-    setUserSelected([hljsLanguage, findReadable(hljsLanguage)]);
+  const handleUserSelectedFormatting = (hljsLanguage: string) => {
+    setUserSelected([hljsLanguage, getReadable(hljsLanguage)]);
     setShouldFormat(true);
   };
 
-  const getLanguageDisplay = () => {
-    if (userSelected) {
-      if (userSelected[0] === language) {
-        return userSelected[1] + ' (Autodetected)';
-      }
+  const display = () => {
+    if (userSelected && userSelected[0] === detectedLanguage) {
+      return userSelected[1] + ' (Autodetected)';
+    } else if (userSelected) {
       return userSelected[1];
+    } else if (!detectedLanguage) {
+      return 'JavaScript (Default)';
+    } else {
+      return getReadable(detectedLanguage) + ' (Autodetected)';
     }
   };
+
   return (
     <div className='w-full mb-4 text-[var(--text-color)]'>
       <div className='flex items-center justify-between w-full'>
         <section className='flex'>
           <CodeBracketIcon className='w-[20px] mr-4' />
           <button
-            onClick={() => handleFormatting(language)}
+            onClick={() => setShouldFormat(true)}
             className='border border-[var(--border-color)] p-1 px-2 rounded-md hover:bg-[var(--hover-color)] text-[var(--text-color)]'
           >
-            {userSelected
-              ? getLanguageDisplay()
-              : `${findReadable(language)} (Autodetected)`}
+            {display()}
           </button>
         </section>
         <section className='flex'>
@@ -139,7 +141,7 @@ function Format({
                 key={`${currentLanguage.hljsLanguage}+${currentLanguage.disabled}`}
                 onClick={() =>
                   !currentLanguage.disabled &&
-                  handleFormatting(currentLanguage.hljsLanguage)
+                  handleUserSelectedFormatting(currentLanguage.hljsLanguage)
                 }
                 className={`flex items-center cursor-pointer ml-8 border border-[var(--border-color)] m-2 p-2 rounded-md hover:bg-[var(--hover-color)] ${
                   currentLanguage.disabled
@@ -148,7 +150,7 @@ function Format({
                 }`}
               >
                 <span>
-                  {currentLanguage.hljsLanguage === language
+                  {currentLanguage.hljsLanguage === detectedLanguage
                     ? `${currentLanguage.readableLanguage} (Autodetected)`
                     : currentLanguage.readableLanguage}
                 </span>

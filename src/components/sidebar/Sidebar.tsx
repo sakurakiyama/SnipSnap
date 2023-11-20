@@ -6,7 +6,7 @@ interface SidebarProps {
   setBackground: React.Dispatch<React.SetStateAction<string>>;
   setLintTheme: React.Dispatch<React.SetStateAction<string>>;
   setShouldFormat: React.Dispatch<React.SetStateAction<boolean>>;
-  language: string;
+  detectedLanguage: string;
   userSelected: undefined | string[];
   setUserSelected: React.Dispatch<React.SetStateAction<string[] | undefined>>;
 }
@@ -14,7 +14,7 @@ function Sidebar({
   setBackground,
   setLintTheme,
   setShouldFormat,
-  language,
+  detectedLanguage,
   userSelected,
   setUserSelected,
 }: SidebarProps) {
@@ -26,7 +26,7 @@ function Sidebar({
         userSelected={userSelected}
         setUserSelected={setUserSelected}
         setShouldFormat={setShouldFormat}
-        language={language}
+        detectedLanguage={detectedLanguage}
       />
     </div>
   );

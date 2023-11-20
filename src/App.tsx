@@ -8,7 +8,7 @@ function App() {
   const [background, setBackground] = useState<string>('blush');
   const [lintTheme, setLintTheme] = useState<string>('');
   const [shouldFormat, setShouldFormat] = useState<boolean>(false);
-  const [language, setLanguage] = useState<string>('');
+  const [detectedLanguage, setDetectedLanguage] = useState<string>('');
   const [userSelected, setUserSelected] = useState<undefined | string[]>(
     undefined
   );
@@ -19,7 +19,7 @@ function App() {
         setBackground={setBackground}
         setLintTheme={setLintTheme}
         setShouldFormat={setShouldFormat}
-        language={language}
+        detectedLanguage={detectedLanguage}
         userSelected={userSelected}
         setUserSelected={setUserSelected}
       />
@@ -28,8 +28,8 @@ function App() {
         lintTheme={lintTheme}
         setShouldFormat={setShouldFormat}
         shouldFormat={shouldFormat}
-        setLanguage={setLanguage}
-        language={language}
+        setDetectedLanguage={setDetectedLanguage}
+        detectedLanguage={detectedLanguage}
         userSelected={userSelected}
       />
       <ToastContainer
