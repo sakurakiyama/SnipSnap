@@ -5,9 +5,7 @@
 ## Core Features
 
 ✨ **Syntax Highlighter:** Input code, auto-detect language, and format.
-
 ✨ **Formatting:** Customize your snippet with cool background gradients and syntax colors.
-
 ✨ **Export:** Export your snippet as a PNG or JPG.
 
 ## How does it work
