@@ -18,6 +18,7 @@ function Format({
 }: FormatProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isDisabled, setIsDiasbled] = useState<boolean>(false);
+  const [displayTitle, setDisplayTitle] = useState('');
 
   const programmingLanguages = [
     { readableLanguage: 'XML', hljsLanguage: 'xml', disabled: true },
@@ -101,32 +102,24 @@ function Format({
   };
 
   useEffect(() => {
-    const determineAndSetDisabled = () => {
+    const determineButtonDetails = () => {
       if (userSelected && userSelected[0] === detectedLanguage) {
         setIsDiasbled(determineDisabled(userSelected[0]));
+        setDisplayTitle(userSelected[1] + ' (Autodetected)');
       } else if (userSelected) {
         setIsDiasbled(determineDisabled(userSelected[0]));
+        setDisplayTitle(userSelected[1]);
       } else if (!detectedLanguage) {
         setIsDiasbled(false);
+        setDisplayTitle('JavaScript (Default)');
       } else {
         setIsDiasbled(determineDisabled(detectedLanguage));
+        setDisplayTitle(getReadable(detectedLanguage) + ' (Autodetected)');
       }
     };
 
-    determineAndSetDisabled();
+    determineButtonDetails();
   }, [detectedLanguage, userSelected]);
-
-  const display = () => {
-    if (userSelected && userSelected[0] === detectedLanguage) {
-      return userSelected[1] + ' (Autodetected)';
-    } else if (userSelected) {
-      return userSelected[1];
-    } else if (!detectedLanguage) {
-      return 'JavaScript (Default)';
-    } else {
-      return getReadable(detectedLanguage) + ' (Autodetected)';
-    }
-  };
 
   return (
     <div className='w-full mb-4 text-[var(--text-color)]'>
@@ -140,7 +133,7 @@ function Format({
               isDisabled ? 'opacity-50 pointer-events-none' : ''
             }`}
           >
-            {display()}
+            {displayTitle}
           </button>
         </section>
         <section className='flex'>
