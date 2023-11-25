@@ -69,6 +69,7 @@ function CodeEditor({
     // Background color
     <div ref={snippetRef} className='relative block rounded-md w-[680px] p-4'>
       <div
+        data-testid='backgroundWrapper'
         className={`flex flex-col w-[600px] p-10 rounded-md m-auto ${background}`}
       >
         <pre className=' ml-auto mr-auto'>

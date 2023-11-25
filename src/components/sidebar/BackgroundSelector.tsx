@@ -3,6 +3,7 @@ import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import '../../stylesheets/Background.scss';
+import { backgrounds } from '../../constants';
 
 interface BackgroundSelectorProps {
   setBackground: React.Dispatch<React.SetStateAction<string>>;
@@ -11,21 +12,6 @@ function BackgroundSelector({
   setBackground,
 }: BackgroundSelectorProps): JSX.Element {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  const backgrounds = [
-    'Fiery',
-    'Citrus',
-    'Fuchsia',
-    'Blush',
-    'Sky',
-    'Midnight',
-    'Forest',
-    'Zest',
-    'Slate',
-    'Noir',
-    'Sunny',
-    'Regal',
-  ];
 
   return (
     <div className='w-full mb-4 text-[var(--text-color)]'>
@@ -37,11 +23,13 @@ function BackgroundSelector({
         <section className='flex'>
           {isOpen ? (
             <ChevronDownIcon
+              data-testid='downIcon'
               onClick={() => setIsOpen(false)}
               className='w-[20px]'
             />
           ) : (
             <ChevronRightIcon
+              data-testid='rightIcon'
               className='w-[20px]'
               onClick={() => setIsOpen(true)}
             />
@@ -49,6 +37,7 @@ function BackgroundSelector({
         </section>
       </div>
       <div
+        data-testid='content'
         className={`pt-2 overflow-hidden transition-all duration-1000 
         ${isOpen ? 'max-h-[300px] overflow-scroll	' : 'max-h-0'}`}
       >
@@ -58,6 +47,7 @@ function BackgroundSelector({
             return (
               <ul
                 key={background}
+                data-testid={lowercaseBackground}
                 onClick={() => setBackground(lowercaseBackground)}
                 className='flex items-center ml-8 border border-[var(--border-color)] m-2 p-2 rounded-md hover:bg-[var(--hover-color)] cursor-pointer'
               >
