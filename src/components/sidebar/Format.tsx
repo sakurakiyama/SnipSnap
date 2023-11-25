@@ -1,7 +1,7 @@
 import { CodeBracketIcon } from '@heroicons/react/24/outline';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface FormatProps {
   setShouldFormat: React.Dispatch<React.SetStateAction<boolean>>;
@@ -17,6 +17,7 @@ function Format({
   setUserSelected,
 }: FormatProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isDisabled, setIsDiasbled] = useState<boolean>(false);
 
   const programmingLanguages = [
     { readableLanguage: 'XML', hljsLanguage: 'xml', disabled: true },
@@ -92,6 +93,29 @@ function Format({
     setShouldFormat(true);
   };
 
+  const determineDisabled = (language: string) => {
+    const object = programmingLanguages.find(
+      (arr) => arr.hljsLanguage === language
+    );
+    return object?.disabled ? object?.disabled : false;
+  };
+
+  useEffect(() => {
+    const determineAndSetDisabled = () => {
+      if (userSelected && userSelected[0] === detectedLanguage) {
+        setIsDiasbled(determineDisabled(userSelected[0]));
+      } else if (userSelected) {
+        setIsDiasbled(determineDisabled(userSelected[0]));
+      } else if (!detectedLanguage) {
+        setIsDiasbled(false);
+      } else {
+        setIsDiasbled(determineDisabled(detectedLanguage));
+      }
+    };
+
+    determineAndSetDisabled();
+  }, [detectedLanguage, userSelected]);
+
   const display = () => {
     if (userSelected && userSelected[0] === detectedLanguage) {
       return userSelected[1] + ' (Autodetected)';
@@ -110,8 +134,11 @@ function Format({
         <section className='flex'>
           <CodeBracketIcon className='w-[20px] mr-4' />
           <button
+            disabled={isDisabled}
             onClick={() => setShouldFormat(true)}
-            className='border border-[var(--border-color)] p-1 px-2 rounded-md hover:bg-[var(--hover-color)] text-[var(--text-color)]'
+            className={`border border-[var(--border-color)] p-1 px-2 rounded-md hover:bg-[var(--hover-color)] text-[var(--text-color)] ${
+              isDisabled ? 'opacity-50 pointer-events-none' : ''
+            }`}
           >
             {display()}
           </button>
