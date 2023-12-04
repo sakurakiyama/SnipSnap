@@ -54,13 +54,13 @@ function SaveSnippet({ snippetRef, fileName }: SaveSnippetProps) {
         <section className='flex'>
           {isOpen ? (
             <ChevronDownIcon
-              data-testid='downIcon'
+              data-testid='snippetDownIcon'
               onClick={() => setIsOpen(false)}
               className='w-[20px]'
             />
           ) : (
             <ChevronRightIcon
-              data-testid='rightIcon'
+              data-testid='snippetRightIcon'
               className='w-[20px]'
               onClick={() => setIsOpen(true)}
             />

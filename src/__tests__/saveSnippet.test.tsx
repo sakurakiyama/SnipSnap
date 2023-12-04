@@ -25,7 +25,7 @@ beforeEach(() => {
 
 describe('save snippet', async () => {
   it('should download a jpg if jpg is selected', async () => {
-    const rightButton = getByTestId('rightIcon');
+    const rightButton = getByTestId('snippetRightIcon');
     fireEvent.click(rightButton);
     const jpgButton = getByTestId('jpg');
     fireEvent.click(jpgButton);
@@ -39,7 +39,7 @@ describe('save snippet', async () => {
   });
 
   it('should download a png if png is selected', async () => {
-    const rightButton = getByTestId('rightIcon');
+    const rightButton = getByTestId('snippetRightIcon');
     fireEvent.click(rightButton);
     const pngButton = getByTestId('png');
     fireEvent.click(pngButton);
@@ -54,7 +54,7 @@ describe('save snippet', async () => {
 
   it('should error on download if the snippet is not defined', async () => {
     snippetRef = null;
-    const rightButton = getByTestId('rightIcon');
+    const rightButton = getByTestId('snippetRightIcon');
     fireEvent.click(rightButton);
     const jpgButton = getByTestId('jpg');
 

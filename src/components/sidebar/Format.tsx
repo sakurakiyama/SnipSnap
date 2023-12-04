@@ -2,6 +2,7 @@ import { CodeBracketIcon } from '@heroicons/react/24/outline';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { useState, useEffect } from 'react';
+import { programmingLanguages } from '../../constants';
 
 interface FormatProps {
   setShouldFormat: React.Dispatch<React.SetStateAction<boolean>>;
@@ -17,70 +18,8 @@ function Format({
   setUserSelected,
 }: FormatProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isDisabled, setIsDiasbled] = useState<boolean>(false);
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [displayTitle, setDisplayTitle] = useState('');
-
-  const programmingLanguages = [
-    { readableLanguage: 'XML', hljsLanguage: 'xml', disabled: true },
-    { readableLanguage: 'Bash', hljsLanguage: 'bash', disabled: true },
-    { readableLanguage: 'C', hljsLanguage: 'c', disabled: true },
-    { readableLanguage: 'C++', hljsLanguage: 'cpp', disabled: true },
-    { readableLanguage: 'C#', hljsLanguage: 'csharp', disabled: true },
-    { readableLanguage: 'Markdown', hljsLanguage: 'markdown', disabled: false },
-    { readableLanguage: 'Diff', hljsLanguage: 'diff', disabled: true },
-    { readableLanguage: 'Ruby', hljsLanguage: 'ruby', disabled: true },
-    { readableLanguage: 'Go', hljsLanguage: 'go', disabled: true },
-    { readableLanguage: 'GraphQL', hljsLanguage: 'graphql', disabled: false },
-    { readableLanguage: 'INI', hljsLanguage: 'ini', disabled: true },
-    { readableLanguage: 'Java', hljsLanguage: 'java', disabled: true },
-    {
-      readableLanguage: 'JavaScript',
-      hljsLanguage: 'javascript',
-      disabled: false,
-    },
-    { readableLanguage: 'JSON', hljsLanguage: 'json', disabled: true },
-    { readableLanguage: 'Kotlin', hljsLanguage: 'kotlin', disabled: true },
-    { readableLanguage: 'Less', hljsLanguage: 'less', disabled: true },
-    { readableLanguage: 'Lua', hljsLanguage: 'lua', disabled: true },
-    { readableLanguage: 'Makefile', hljsLanguage: 'makefile', disabled: true },
-    { readableLanguage: 'Perl', hljsLanguage: 'perl', disabled: true },
-    {
-      readableLanguage: 'Objective-C',
-      hljsLanguage: 'objectivec',
-      disabled: true,
-    },
-    { readableLanguage: 'PHP', hljsLanguage: 'php', disabled: false },
-    {
-      readableLanguage: 'PHP Template',
-      hljsLanguage: 'php-template',
-      disabled: true,
-    },
-    {
-      readableLanguage: 'Plain Text',
-      hljsLanguage: 'plaintext',
-      disabled: true,
-    },
-    { readableLanguage: 'Python', hljsLanguage: 'python', disabled: true },
-    {
-      readableLanguage: 'Python REPL',
-      hljsLanguage: 'python-repl',
-      disabled: true,
-    },
-    { readableLanguage: 'R', hljsLanguage: 'r', disabled: true },
-    { readableLanguage: 'Rust', hljsLanguage: 'rust', disabled: true },
-    { readableLanguage: 'SCSS', hljsLanguage: 'scss', disabled: false },
-    { readableLanguage: 'Shell', hljsLanguage: 'shell', disabled: true },
-    { readableLanguage: 'SQL', hljsLanguage: 'sql', disabled: true },
-    { readableLanguage: 'Swift', hljsLanguage: 'swift', disabled: true },
-    { readableLanguage: 'YAML', hljsLanguage: 'yaml', disabled: true },
-    {
-      readableLanguage: 'TypeScript',
-      hljsLanguage: 'typescript',
-      disabled: false,
-    },
-    { readableLanguage: 'VB.NET', hljsLanguage: 'vbnet', disabled: true },
-    { readableLanguage: 'WebAssembly', hljsLanguage: 'wasm', disabled: true },
-  ];
 
   const getReadable = (language: string) => {
     const object = programmingLanguages.find(
@@ -104,16 +43,16 @@ function Format({
   useEffect(() => {
     const determineButtonDetails = () => {
       if (userSelected && userSelected[0] === detectedLanguage) {
-        setIsDiasbled(determineDisabled(userSelected[0]));
+        setIsDisabled(determineDisabled(userSelected[0]));
         setDisplayTitle(userSelected[1] + ' (Autodetected)');
       } else if (userSelected) {
-        setIsDiasbled(determineDisabled(userSelected[0]));
+        setIsDisabled(determineDisabled(userSelected[0]));
         setDisplayTitle(userSelected[1]);
       } else if (!detectedLanguage) {
-        setIsDiasbled(false);
+        setIsDisabled(false);
         setDisplayTitle('JavaScript (Default)');
       } else {
-        setIsDiasbled(determineDisabled(detectedLanguage));
+        setIsDisabled(determineDisabled(detectedLanguage));
         setDisplayTitle(getReadable(detectedLanguage) + ' (Autodetected)');
       }
     };
@@ -127,6 +66,7 @@ function Format({
         <section className='flex'>
           <CodeBracketIcon className='w-[20px] mr-4' />
           <button
+            data-testid='formatMainButton'
             disabled={isDisabled}
             onClick={() => setShouldFormat(true)}
             className={`border border-[var(--border-color)] p-1 px-2 rounded-md hover:bg-[var(--hover-color)] text-[var(--text-color)] ${
@@ -139,11 +79,13 @@ function Format({
         <section className='flex'>
           {isOpen ? (
             <ChevronDownIcon
+              data-testid='formatDownIcon'
               onClick={() => setIsOpen(false)}
               className='w-[20px]'
             />
           ) : (
             <ChevronRightIcon
+              data-testid='formatRightIcon'
               className='w-[20px]'
               onClick={() => setIsOpen(true)}
             />
@@ -151,6 +93,7 @@ function Format({
         </section>
       </div>
       <div
+        data-testid='formatContent'
         className={`pt-2 overflow-hidden transition-all duration-1000 
         ${isOpen ? 'max-h-[300px] overflow-scroll	' : 'max-h-0'}`}
       >
@@ -158,6 +101,7 @@ function Format({
           programmingLanguages.map((currentLanguage) => {
             return (
               <ul
+                data-testid={currentLanguage.hljsLanguage}
                 key={`${currentLanguage.hljsLanguage}+${currentLanguage.disabled}`}
                 onClick={() =>
                   !currentLanguage.disabled &&

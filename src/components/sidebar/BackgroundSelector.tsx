@@ -23,13 +23,13 @@ function BackgroundSelector({
         <section className='flex'>
           {isOpen ? (
             <ChevronDownIcon
-              data-testid='downIcon'
+              data-testid='backgroundDownIcon'
               onClick={() => setIsOpen(false)}
               className='w-[20px]'
             />
           ) : (
             <ChevronRightIcon
-              data-testid='rightIcon'
+              data-testid='backgroundRightIcon'
               className='w-[20px]'
               onClick={() => setIsOpen(true)}
             />
@@ -37,7 +37,7 @@ function BackgroundSelector({
         </section>
       </div>
       <div
-        data-testid='content'
+        data-testid='backgroundContent'
         className={`pt-2 overflow-hidden transition-all duration-1000 
         ${isOpen ? 'max-h-[300px] overflow-scroll	' : 'max-h-0'}`}
       >

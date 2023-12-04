@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { CommandLineIcon } from '@heroicons/react/24/outline';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { highlightStyles } from '../../constants';
 
 interface LintThemesProps {
   setLintTheme: React.Dispatch<React.SetStateAction<string>>;
@@ -14,36 +15,6 @@ function LintThemes({ setLintTheme }: LintThemesProps) {
     setLintTheme(style);
   };
 
-  const highlightStyles = [
-    'atom-one-dark',
-    'an-old-hope',
-    'arta',
-    'ashes',
-    'atelier-cave',
-    'atelier-dune',
-    'atelier-estuary',
-    'atelier-forest',
-    'atelier-lakeside',
-    'atelier-plateau',
-    'atelier-savanna',
-    'atelier-seaside',
-    'atlas',
-    'bespin',
-    'chalk',
-    'circus',
-    'classic-dark',
-    'codeschool',
-    'colors',
-    'darcula',
-    'dark-violet',
-    'darkmoss',
-    'darktooth',
-    'decaf',
-    'default-dark',
-    'dracula',
-    'edge-dark',
-  ];
-
   return (
     <div className='w-full mb-4 text-[var(--text-color)]'>
       <div className='flex items-center justify-between w-full'>
@@ -54,11 +25,13 @@ function LintThemes({ setLintTheme }: LintThemesProps) {
         <section className='flex'>
           {isOpen ? (
             <ChevronDownIcon
+              data-testid='lintThemeDownIcon'
               onClick={() => setIsOpen(false)}
               className='w-[20px]'
             />
           ) : (
             <ChevronRightIcon
+              data-testid='lintThemeRightIcon'
               className='w-[20px]'
               onClick={() => setIsOpen(true)}
             />
@@ -66,6 +39,7 @@ function LintThemes({ setLintTheme }: LintThemesProps) {
         </section>
       </div>
       <div
+        data-testid='lintThemeContent'
         className={`pt-2 overflow-hidden transition-all duration-1000 
         ${isOpen ? 'max-h-[300px] overflow-scroll	' : 'max-h-0'}`}
       >
@@ -73,6 +47,7 @@ function LintThemes({ setLintTheme }: LintThemesProps) {
           highlightStyles.map((style) => {
             return (
               <ul
+                data-testid={style}
                 key={style}
                 onClick={() => updateLintTheme(style)}
                 className='flex items-center cursor-pointer ml-8 border border-[var(--border-color)] m-2 p-2 rounded-md hover:bg-[var(--hover-color)] '

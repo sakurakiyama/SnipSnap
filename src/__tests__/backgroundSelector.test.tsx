@@ -21,8 +21,8 @@ beforeEach(() => {
 
 describe('background selector', async () => {
   it('should show and hide the list of backgrounds when dropdown is clicked', async () => {
-    const rightIcon = getByTestId('rightIcon');
-    const content = getByTestId('content');
+    const rightIcon = getByTestId('backgroundRightIcon');
+    const content = getByTestId('backgroundContent');
 
     expect(content).toHaveTextContent('');
 
@@ -34,7 +34,7 @@ describe('background selector', async () => {
       });
     });
 
-    const downIcon = getByTestId('downIcon');
+    const downIcon = getByTestId('backgroundDownIcon');
     fireEvent.click(downIcon);
 
     await waitFor(() => {
@@ -43,7 +43,7 @@ describe('background selector', async () => {
   });
 
   it('should select a background theme and change the background', async () => {
-    fireEvent.click(getByTestId('rightIcon'));
+    fireEvent.click(getByTestId('backgroundRightIcon'));
     const index = Math.floor(Math.random() * backgrounds.length);
     const backgroundTheme = backgrounds[index].toLowerCase();
     fireEvent.click(getByTestId(backgroundTheme));
