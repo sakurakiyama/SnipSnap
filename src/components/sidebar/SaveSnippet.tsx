@@ -12,28 +12,30 @@ function SaveSnippet({ snippetRef, fileName }: SaveSnippetProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const downloadImage = async (method: string) => {
-    if (snippetRef) {
-      const element = snippetRef.current;
-      if (element) {
-        const canvas = await html2canvas(element);
-        const data = canvas.toDataURL(`image/${method}`);
-
-        const link = document.createElement('a');
-        if (typeof link.download === 'string') {
-          link.href = data;
-          if (fileName) {
-            link.download = `${fileName}.${method}`;
+    try {
+      if (snippetRef) {
+        const element = snippetRef.current;
+        if (element) {
+          const canvas = await html2canvas(element);
+          const data = canvas.toDataURL(`image/${method}`);
+          const link = document.createElement('a');
+          if (typeof link.download === 'string') {
+            link.href = data;
+            if (fileName) {
+              link.download = `${fileName}.${method}`;
+            } else {
+              link.download = `Image.${method}`;
+            }
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
           } else {
-            link.download = `Image.${method}`;
+            window.open(data);
           }
-
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        } else {
-          window.open(data);
         }
       }
+    } catch (error) {
+      console.error('Error downloading snippet:', error);
     }
   };
 
@@ -52,11 +54,13 @@ function SaveSnippet({ snippetRef, fileName }: SaveSnippetProps) {
         <section className='flex'>
           {isOpen ? (
             <ChevronDownIcon
+              data-testid='downIcon'
               onClick={() => setIsOpen(false)}
               className='w-[20px]'
             />
           ) : (
             <ChevronRightIcon
+              data-testid='rightIcon'
               className='w-[20px]'
               onClick={() => setIsOpen(true)}
             />
@@ -71,6 +75,7 @@ function SaveSnippet({ snippetRef, fileName }: SaveSnippetProps) {
           saveMethods.map((currentMethod) => {
             return (
               <ul
+                data-testid={currentMethod.method}
                 onClick={() => currentMethod.function(currentMethod.method)}
                 key={currentMethod.method}
                 className='flex items-center cursor-pointer ml-8 border border-[var(--border-color)] m-2 p-2 rounded-md hover:bg-[var(--hover-color)] '
