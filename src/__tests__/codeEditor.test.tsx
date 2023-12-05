@@ -13,8 +13,8 @@ import * as formattingUtils from '../utils/formatting';
 let getByTestId: RenderResult['getByTestId'];
 
 const setShouldFormatMock = vi.fn();
-const setDetectedLanguage = vi.fn();
-const setFileName = vi.fn();
+const setDetectedLanguageMock = vi.fn();
+const setFileNameMock = vi.fn();
 const formatCodeMock = vi.fn().mockRejectedValue(new Error('Format error'));
 vi.spyOn(formattingUtils, 'formatCode').mockImplementation(formatCodeMock);
 
@@ -43,10 +43,10 @@ function renderCodeEditor(
       lintTheme={lintTheme}
       setShouldFormat={setShouldFormatMock}
       shouldFormat={shouldFormat}
-      setDetectedLanguage={setDetectedLanguage}
+      setDetectedLanguage={setDetectedLanguageMock}
       detectedLanguage={detectedLanguage}
       userSelected={userSelected}
-      setFileName={setFileName}
+      setFileName={setFileNameMock}
       fileName={fileName}
     />
   ));
@@ -164,7 +164,7 @@ describe('code editor', async () => {
     fireEvent.input(inputBlock, { target: { innerText: testCodeBlock } });
 
     await waitFor(() => {
-      expect(setDetectedLanguage).toHaveBeenCalledWith('javascript');
+      expect(setDetectedLanguageMock).toHaveBeenCalledWith('javascript');
     });
   });
 

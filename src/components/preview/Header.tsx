@@ -32,15 +32,25 @@ function Header({
 
   return (
     <div
+      data-testid='headerWrapper'
       style={{ backgroundColor: lintBackground }}
       className='rounded-tr-lg rounded-tl-lg h-8 p-2'
     >
       <div className='flex'>
         {/* Buttons */}
         <div className='flex flex-row w-full'>
-          <div className='rounded-[50%] h-[15px] w-[15px] bg-[#fb5d55] mr-2'></div>
-          <div className='rounded-[50%] h-[15px] w-[15px] bg-[#fab930] mr-2'></div>
-          <div className='rounded-[50%] h-[15px] w-[15px] bg-[#28c63e]'></div>
+          <div
+            data-testid='redButton'
+            className='rounded-[50%] h-[15px] w-[15px] bg-[#fb5d55] mr-2'
+          ></div>
+          <div
+            data-testid='yellowButton'
+            className='rounded-[50%] h-[15px] w-[15px] bg-[#fab930] mr-2'
+          ></div>
+          <div
+            data-testid='greenButton'
+            className='rounded-[50%] h-[15px] w-[15px] bg-[#28c63e]'
+          ></div>
         </div>
         {/* Editable field */}
         <div>
