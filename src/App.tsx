@@ -21,7 +21,7 @@ function App() {
   return (
     <div>
       <NavBar />
-      <div className='flex flex-row h-full justify-center align-middle mt-24'>
+      <div className='flex flex-col lg:flex-row h-full justify-center items-center mt-24 lg:items-start'>
         <Sidebar
           setBackground={setBackground}
           setLintTheme={setLintTheme}

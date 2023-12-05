@@ -24,7 +24,7 @@ function Sidebar({
   fileName,
 }: SidebarProps) {
   return (
-    <div className='flex flex-col w-[30%] h-full max-h-[700px] border border-[var(--border-color)] rounded-md m-4 p-6 overflow-scroll bg-[#171616] shadow-lg'>
+    <div className='flex flex-col w-[30%] h-full max-h-[700px] min-w-[350px] border border-[var(--border-color)] rounded-md m-4 p-6 overflow-scroll bg-[#171616] shadow-lg'>
       <BackgroundSelector setBackground={setBackground} />
       <LintThemes setLintTheme={setLintTheme} />
       <Format
