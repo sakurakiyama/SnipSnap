@@ -30,3 +30,12 @@
 - TailwindCSS
 - SCSS/CSS
 - HTML
+- React Testing Library
+- Vitest
+
+## How to run it locally
+
+1. Fork the Project
+2. Run `npm run dev`
+
+To run tests run `npm run test`
