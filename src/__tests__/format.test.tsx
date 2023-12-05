@@ -28,6 +28,10 @@ function renderFormatComponent(
   ));
 }
 
+afterEach(() => {
+  vi.clearAllMocks();
+});
+
 describe('format', async () => {
   it('allow user to format code if the user selected language is not disabled', async () => {
     renderFormatComponent('', undefined);

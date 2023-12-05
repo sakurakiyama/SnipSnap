@@ -47,5 +47,7 @@ describe('lint theme', async () => {
     const selectedThemeButton = getByTestId(selectedTheme);
     fireEvent.click(selectedThemeButton);
     expect(setLintTheme).toHaveBeenCalledWith(selectedTheme);
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    expect(currentTheme).toBe(selectedTheme);
   });
 });

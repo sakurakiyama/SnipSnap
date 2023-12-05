@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
+    "@testing-library/user-event": "^14.5.1",
     "autoprefixer": "^10.4.16",
     "highlight.js": "^11.9.0",
     "html2canvas": "^1.4.1",

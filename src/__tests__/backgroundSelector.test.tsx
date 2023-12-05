@@ -19,6 +19,10 @@ beforeEach(() => {
   ));
 });
 
+afterEach(() => {
+  vi.clearAllMocks();
+});
+
 describe('background selector', async () => {
   it('should show and hide the list of backgrounds when dropdown is clicked', async () => {
     const rightIcon = getByTestId('backgroundRightIcon');

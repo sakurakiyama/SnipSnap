@@ -48,7 +48,7 @@ function CodeEditor({
           if (shouldFormat === true) toast('✅ Formatted successfully.');
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
         toast.error(
           'Unable to format code. Check the console logs for details.'
         );
@@ -59,7 +59,7 @@ function CodeEditor({
   }, [shouldFormat]);
 
   const handleCodeChange = async (event: React.SyntheticEvent<HTMLElement>) => {
-    const inputValue = event.currentTarget.innerText;
+    const inputValue = event.currentTarget.innerText || '';
     const highlightedCode = hljs.highlightAuto(inputValue);
     setDetectedLanguage(highlightedCode.language!);
     codeBlockRef.current!.innerHTML = highlightedCode.value;
@@ -93,6 +93,7 @@ function CodeEditor({
           <div className='rounded-tr-lg rounded-tl-lg h-8 p-2'></div>
           {/* Handle Input */}
           <code
+            data-testid='inputBlock'
             ref={inputBlockRef}
             className={`${`language-${detectedLanguage}`} hljs !caret-gray-500 min-h-[300px] !outline-none !bg-transparent !text-transparent rounded-br-lg rounded-bl-lg shadow-lg !break-words `}
             contentEditable={true}
@@ -102,6 +103,7 @@ function CodeEditor({
                 event.preventDefault();
                 const inputElement = inputBlockRef.current!;
                 const selection = window.getSelection();
+
                 const range = selection?.getRangeAt(0);
 
                 if (range) {
