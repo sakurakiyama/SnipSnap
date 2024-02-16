@@ -65,6 +65,53 @@ function CodeEditor({
     codeBlockRef.current!.innerHTML = highlightedCode.value;
   };
 
+  const handlePaste = (event: React.ClipboardEvent<HTMLElement>) => {
+    event.preventDefault();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const clipboardData = event.clipboardData || (window as any).clipboardData;
+    const pastedText = clipboardData.getData('text/plain');
+
+    const selection = window.getSelection();
+    if (selection) {
+      const range = selection.getRangeAt(0);
+      range.deleteContents();
+      range.insertNode(document.createTextNode(pastedText));
+
+      range.setStartAfter(range.endContainer);
+      range.collapse(true);
+
+      selection.removeAllRanges();
+      selection.addRange(range);
+
+      inputBlockRef.current!.dispatchEvent(
+        new Event('input', { bubbles: true })
+      );
+    }
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      const inputElement = inputBlockRef.current!;
+      const selection = window.getSelection();
+
+      const range = selection?.getRangeAt(0);
+
+      if (range) {
+        const tabNode = document.createTextNode('  ');
+        range.deleteContents();
+        range.insertNode(tabNode);
+        range.setStartAfter(tabNode);
+        range.collapse(true);
+
+        selection?.removeAllRanges();
+        selection?.addRange(range);
+
+        inputElement.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+    }
+  };
+
   return (
     // Background color
     <div
@@ -98,30 +145,8 @@ function CodeEditor({
             className={`${`language-${detectedLanguage}`} hljs !caret-gray-500 min-h-[300px] !outline-none !bg-transparent !text-transparent rounded-br-lg rounded-bl-lg shadow-lg !break-words `}
             contentEditable={true}
             onInput={handleCodeChange}
-            onKeyDown={(event) => {
-              if (event.key === 'Tab') {
-                event.preventDefault();
-                const inputElement = inputBlockRef.current!;
-                const selection = window.getSelection();
-
-                const range = selection?.getRangeAt(0);
-
-                if (range) {
-                  const tabNode = document.createTextNode('  ');
-                  range.deleteContents();
-                  range.insertNode(tabNode);
-                  range.setStartAfter(tabNode);
-                  range.collapse(true);
-
-                  selection?.removeAllRanges();
-                  selection?.addRange(range);
-
-                  inputElement.dispatchEvent(
-                    new Event('input', { bubbles: true })
-                  );
-                }
-              }
-            }}
+            onPaste={handlePaste}
+            onKeyDown={handleKeyDown}
           ></code>
         </pre>
       </div>
